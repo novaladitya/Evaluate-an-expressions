@@ -117,3 +117,60 @@ void cetakinfos(){
 		}
 	}
 };
+
+int main(){
+	evalExp e;
+	char input[6];
+	int i = 0;
+	
+	cout << "Masukkan infix, dipisahkan tiap elemen dengan spasi, " << endl
+		 << "dan jika ingin mengakhirinya dengan cara (enter) contoh : ( 5 / 4 ) + 8(enter)" << "\n\n"
+		 << "Masukkan infix = ";
+	while(input[i]!=10){ //ketika terdeteksi input != enter(10 = ASCII dari enter)
+		for(int j=0; j<6; j++)//untuk reset array input
+			input[j]='\0';
+		i = 0;
+		while(input[i-1]!=32 && input[i-1]!=10){
+			cin.get(input[i]);
+			i++;
+		}
+		e.infix.tBelakang(e.turntoint(input));
+		i--;
+	}
+	cout << "\n\nInfix = ";
+	e.infix.cetakinfos();
+	cout << endl;
+	
+	/**************************TRANSFORMING********************************************/
+	while(e.infix.head!=NULL){		
+		if(e.infix.getHead()=='+' || e.infix.getHead()=='-' || e.infix.getHead()=='*' || e.infix.getHead()=='/'){
+			if(e.s.isEmpty() || e.s.getTop()=='('){
+				e.s.push(e.infix.hDepan());
+			}else{
+				while(!e.s.isEmpty() && e.s.getTop()!='(' && e.precedence(e.infix.getHead())<=e.precedence(e.s.getTop())){
+					e.postfix.tBelakang(e.s.pop());
+				}
+				e.s.push(e.infix.hDepan());
+			}
+		}
+		else if(e.infix.getHead()=='('){
+			e.s.push(e.infix.hDepan());
+		}
+		else if(e.infix.getHead()==')'){
+			while(!e.s.isEmpty() && e.s.getTop()!='('){
+				e.postfix.tBelakang(e.s.pop());
+			}
+			e.infix.hDepan();
+			e.s.pop();
+		}
+		else{
+			e.postfix.tBelakang(e.s.pop());
+		}
+	}
+	while(!e.s.isEmpty()){
+		e.postfix.tBelakang(e.s.pop());
+	}
+	cout << "Postfix = ";
+	e.postfix.cetakinfos();
+	cout << endl;
+	
