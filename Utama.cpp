@@ -50,3 +50,47 @@ class evalExp{
 		}
 	};
 	stack s;
+class infos{
+	public:
+	node *head = NULL, *tail = NULL;
+	
+	bool isEmpty(){
+        return (head==NULL);
+        }
+        
+void tBelakang(int databaru){
+       	node *nodeBaru = new node;
+       	nodeBaru->data = databaru;
+       	nodeBaru->next = NULL;
+       	if(isEmpty()){
+           head = nodeBaru;
+           tail = nodeBaru;
+           head->next = NULL;
+           tail->next = NULL;
+        }else{
+           tail->next = nodeBaru;
+           tail = nodeBaru;
+           }}
+		
+int hDepan(){
+	node *hapus = head;
+	int dta = head->data;
+        head = head->next;
+        delete hapus;
+        return dta;}
+		
+int getHead(){
+	return head->data;}
+
+void cetakinfos(){
+	node *bantu = head;
+	while(bantu!=NULL){
+	if(bantu->data=='+' || bantu->data=='-' || bantu->data=='*' || bantu->data=='/'){
+		cout << (char)bantu->data << " ";
+	}else{
+		cout << bantu->data << " ";}
+		bantu = bantu->next;
+	}
+	}
+	};
+	infos infix, postfix;
