@@ -173,4 +173,43 @@ int main(){
 	cout << "Postfix = ";
 	e.postfix.cetakinfos();
 	cout << endl;
+		//evaluating
+	int A, B, hasil;
+	while(e.postfix.head!=NULL){
+		if(e.postfix.getHead()=='*' || e.postfix.getHead()=='/' || e.postfix.getHead()=='+' || e.postfix.getHead()=='-'){
+			switch(e.postfix.hDepan()){
+				case '*':
+					A = e.s.pop();
+					B = e.s.pop();
+					hasil = B*A;
+					e.s.push(hasil);
+					break;
+				case '/':
+					A = e.s.pop();
+					B = e.s.pop();
+					hasil = B/A;
+					e.s.push(hasil);
+					break;
+				case '-':
+					A = e.s.pop();
+					B = e.s.pop();
+					hasil = B-A;
+					e.s.push(hasil);
+					break;
+				case '+':
+					A =e .s.pop();
+					B = e.s.pop();
+					hasil = B+A;
+					e.s.push(hasil);
+					break;
+			}
+		}
+		else{
+			e.s.push(e.postfix.hDepan());
+		}
+		
+	}
+	cout<<"Hasil= "<<e.s.pop();
 	
+	return 0;
+}
