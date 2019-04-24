@@ -1,3 +1,8 @@
+#include <iostream>
+#include <stdlib.h>
+#include <string.h>
+using namespace std;
+
 class evalExp{
 	public:
 	struct node{
@@ -94,3 +99,21 @@ void cetakinfos(){
 	}
 	};
 	infos infix, postfix;
+	int precedence(int op){
+        if(op=='+' || op=='-'){
+			return 1;
+		}
+        else if(op=='*' || op=='/'){
+            return 2;
+		}
+    }
+    
+    int turntoint(char *inp){
+    	if(isdigit(*inp)){
+    		return atoi(inp);
+		}
+		else if(inp[0]=='+' || inp[0]=='-' || inp[0]=='*' || inp[0]=='/' || inp[0]=='(' || inp[0]==')'){
+			return inp[0];
+		}
+	}
+};
