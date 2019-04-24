@@ -1,3 +1,8 @@
+//Muhhammad Azriel B.S 1817051024
+//Muhammad Fajru R. 1857051003
+//Muhammad Irfan 1817051071
+//Noval Aditya M. 1817051019
+
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
