@@ -169,7 +169,7 @@ int main(){
 			e.s.pop();
 		}
 		else{
-			e.postfix.tBelakang(e.s.pop());
+			e.postfix.tBelakang(e.infix.hDepan());
 		}
 	}
 	while(!e.s.isEmpty()){
